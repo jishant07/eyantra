@@ -17,14 +17,15 @@ def partA():
                 readImg = cv2.imread(workPath)
                 height = readImg.shape[0]
                 width = readImg.shape[1]
-                centerY = height/2
-                centerX = width/2
+                centerY = (height//2-1)
+                centerX = (width//2-1)
                 blue = readImg[centerY,centerX,0]
                 green = readImg[centerY,centerX,1]
                 red = readImg[centerY,centerX,2]
                 inprow = [file,height,width,readImg.shape[2],blue,green,red]
                 rows.insert(0,inprow)
     filePath = genPath+"/stats.csv"
+    print (rows)
     with open(filePath,'wb') as file:
         writer = csv.writer(file)
         writer.writerows(rows)
