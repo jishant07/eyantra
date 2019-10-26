@@ -4,8 +4,8 @@ import os
 import csv
 
 relPath = os.path.dirname(os.path.abspath("__file__"))
-imgPath = os.path.join(relPath,"../images")
-genPath = os.path.join(relPath,"../generated")
+imgPath = os.path.join(relPath,"../images/")
+genPath = os.path.join(relPath,"../generated/")
 
 def partA():
     rows=[]
@@ -24,12 +24,26 @@ def partA():
                 red = readImg[centerY,centerX,2]
                 inprow = [file,height,width,readImg.shape[2],blue,green,red]
                 rows.insert(0,inprow)
-    filePath = genPath+"/stats.csv"
-    print (rows)
-    with open(filePath,'wb') as file:
+    filePath = genPath+"stats.csv"
+    with open(filePath,'w+') as file:
         writer = csv.writer(file)
         writer.writerows(rows)
     file.close()
+    pass
+def partB():
+	catImg = cv2.imread(imgPath+"cat.jpg")
+	catImg[:, :, (0,1)] = 0
+	cv2.imshow("Red Cat Image",catImg)
+	os.chdir(genPath)
+	cv2.imwrite("cat_red.jpg",catImg)	
+	pass
+def partC():
+	flowerImg = cv2.imread(imgPath+"flowers.jpg")
+	rgbaFlower = cv2.cvtColor(flowerImg,cv2.COLOR_RGB2RGBA)
+	cv2.imshow("Alpha image",rgbaFlower)
+	cv2.imshow("OG Image",flowerImg)
+	cv2.waitKey(0)
 
 partA()
-
+partB()
+#partC()
