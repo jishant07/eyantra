@@ -23,7 +23,7 @@ for root,dirs,files in os.walk(imgPath):
             red = readImg[centerY,centerX,2]
             inprow = [file,height,width,readImg.shape[2],blue,green,red]
             rows.insert(1,inprow)
-filePath = genPath+"/test.csv"
+filePath = genPath+"/stats.csv"
 print filePath
 with open(filePath,'wb') as file:
     writer = csv.writer(file)
