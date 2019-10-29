@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('import.jpeg')
+img = cv2.imread('import.png')
 hsv_image = cv2.cvtColor(img,cv2.COLOR_RGB2HSV)
 lower = (0,0,0)
-higher = (106,110,79)
+higher = (10,10,10)
 
 mask = cv2.inRange(hsv_image,lower,higher)
 res = cv2.bitwise_and(img,img,mask=mask)
